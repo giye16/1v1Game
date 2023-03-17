@@ -5,7 +5,9 @@
         "device": "*",
         "controller": "*",
         "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2",
-        "animation": "*"
+        "animation": "*",
+        "Makey Makey Keymappings": "github:joylabz/makeymakey-makecode-arcade-extension#1.0.3",
+        "multiplayer": "*"
     },
     "files": [
         "main.blocks",
@@ -13,7 +15,8 @@
         "README.md",
         "assets.json",
         "tilemap.g.jres",
-        "tilemap.g.ts"
+        "tilemap.g.ts",
+        "main.py"
     ],
     "testFiles": [
         "test.ts"
