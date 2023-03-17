@@ -1,3 +1,48 @@
+controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Pressed, function () {
+    if (shotP2 == true) {
+        if (aimP2 == 1) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . 4 4 . . . . . . . 
+                . . . . . . 4 5 5 4 . . . . . . 
+                . . . . . . 2 5 5 2 . . . . . . 
+                . . . . . . . 2 2 . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, P2, -100, 0)
+        }
+        if (aimP2 == 2) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . 4 4 . . . . . . . 
+                . . . . . . 4 5 5 4 . . . . . . 
+                . . . . . . 2 5 5 2 . . . . . . 
+                . . . . . . . 2 2 . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, P2, 100, 0)
+        }
+    }
+    shotP2 = false
+})
 controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (P1.isHittingTile(CollisionDirection.Bottom)) {
         P1.vy = -210
@@ -26,9 +71,10 @@ function Player_2 () {
     controller.player2.moveSprite(P2, 75, 0)
     P2.ay = 600
     P2.fx = 30
+    aimP2 = 0
     statusbar2 = statusbars.create(20, 4, StatusBarKind.Health)
     statusbar2.setPosition(147, 12)
-    aimP2 = 0
+    statusbar2.value = 100
 }
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     if (hitP2 == true) {
@@ -117,6 +163,16 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             `)
     }
 })
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
+    if (shotP1 == false) {
+        statusbar2.value += -20
+        pause(2000)
+    }
+    if (shotP2 == false) {
+        statusbar1.value += -20
+        pause(2000)
+    }
+})
 function Player_1 () {
     P1 = sprites.create(img`
         . . . . . f f f f . . . . . 
@@ -140,9 +196,10 @@ function Player_1 () {
     controller.player1.moveSprite(P1, 75, 0)
     P1.ay = 600
     P1.fx = 30
+    aimP1 = 0
     statusbar1 = statusbars.create(20, 4, StatusBarKind.Health)
     statusbar1.setPosition(13, 12)
-    aimP1 = 0
+    statusbar1.value = 100
 }
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (P2.isHittingTile(CollisionDirection.Bottom)) {
@@ -169,6 +226,16 @@ controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.P
         . . . f f f . . . . . . . . 
         `)
     aimP2 = 2
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+    if (hitP1 == false) {
+        statusbar2.value += -10
+        pause(1000)
+    }
+    if (hitP2 == false) {
+        statusbar1.value += -10
+        pause(1000)
+    }
 })
 controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     P2.setImage(img`
@@ -299,6 +366,51 @@ controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             `)
     }
 })
+controller.player1.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Pressed, function () {
+    if (shotP1 == true) {
+        if (aimP1 == 1) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . 4 4 . . . . . . . 
+                . . . . . . 4 5 5 4 . . . . . . 
+                . . . . . . 2 5 5 2 . . . . . . 
+                . . . . . . . 2 2 . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, P1, -100, 0)
+        }
+        if (aimP1 == 2) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . 4 4 . . . . . . . 
+                . . . . . . 4 5 5 4 . . . . . . 
+                . . . . . . 2 5 5 2 . . . . . . 
+                . . . . . . . 2 2 . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, P1, 100, 0)
+        }
+    }
+    shotP1 = false
+})
 controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     P1.setImage(img`
         . . . . . . f f f f f f . . 
@@ -323,11 +435,14 @@ controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pr
 let hitP1 = false
 let aimP1 = 0
 let statusbar1: StatusBarSprite = null
+let shotP1 = false
 let hitP2 = false
-let aimP2 = 0
 let statusbar2: StatusBarSprite = null
-let P2: Sprite = null
 let P1: Sprite = null
+let P2: Sprite = null
+let projectile: Sprite = null
+let aimP2 = 0
+let shotP2 = false
 scene.setBackgroundImage(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -453,6 +568,10 @@ scene.setBackgroundImage(img`
 tiles.setCurrentTilemap(tilemap`level1`)
 Player_1()
 Player_2()
+game.onUpdateInterval(2000, function () {
+    shotP1 = true
+    shotP2 = true
+})
 game.onUpdateInterval(1000, function () {
     hitP1 = true
     hitP2 = true
