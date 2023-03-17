@@ -31,26 +31,52 @@ function Player_2 () {
     aimP2 = 0
 }
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
+    if (hitP2 == true) {
+        if (aimP2 == 1) {
+            hitP2 = false
+            P2.setImage(img`
+                . . . . . . . . . . . f f . . . . . 
+                . . . . . . . . . f f 7 f f f f . . 
+                . . . . . . . . f f 7 f 9 9 9 9 f . 
+                . . . . . . . f f 7 7 f 9 9 9 9 f . 
+                . . . . . . . f 9 9 9 9 f f 9 9 f . 
+                . . . . . . f 9 7 7 7 7 9 9 f f f . 
+                . . . . . . f 7 9 f f f f 7 7 7 f . 
+                . . . . . . f f f 9 9 9 f f f f f f 
+                . . . . . . f 9 9 a a f b 9 a a 9 f 
+                . . . . . . . f 9 d d f b a d a 9 f 
+                . . . . . . c . 9 9 d d d a 9 9 f f 
+                c c c c c c c 9 d d 9 9 7 7 7 7 f . 
+                . c d d d d c 9 d d a a 9 a a a f . 
+                . . c c c c c . 9 9 9 9 f f f f f . 
+                . . . . . . c . . . f f f f f f f f 
+                . . . . . . . . . . . f f . . f f f 
+                `)
+        }
+        if (aimP2 == 2) {
+            hitP2 = false
+            P2.setImage(img`
+                . . . . . f f . . . . . . . . . . . 
+                . . f f f f 7 f f . . . . . . . . . 
+                . f 9 9 9 9 f 7 f f . . . . . . . . 
+                . f 9 9 9 9 f 7 7 f f . . . . . . . 
+                . f 9 9 f f 9 9 9 9 f . . . . . . . 
+                . f f f 9 9 7 7 7 7 9 f . . . . . . 
+                . f 7 7 7 f f f f 9 7 f . . . . . . 
+                f f f f f f 9 9 9 f f f . . . . . . 
+                f 9 a a 9 b f a a 9 9 f . . . . . . 
+                f 9 a d a b f d d 9 f . . . . . . . 
+                f f 9 9 a d d d 9 9 . c . . . . . . 
+                . f 7 7 7 7 9 9 d d 9 c c c c c c c 
+                . f a a a 9 a a d d 9 c d d d d c . 
+                . f f f f f 9 9 9 9 . c c c c c . . 
+                f f f f f f f f . . . c . . . . . . 
+                f f f . . f f . . . . . . . . . . . 
+                `)
+        }
+    }
+    pause(250)
     if (aimP2 == 1) {
-        P2.setImage(img`
-            . . . . . . . . . . . f f . . . . . 
-            . . . . . . . . . f f 7 f f f f . . 
-            . . . . . . . . f f 7 f 9 9 9 9 f . 
-            . . . . . . . f f 7 7 f 9 9 9 9 f . 
-            . . . . . . . f 9 9 9 9 f f 9 9 f . 
-            . . . . . . f 9 7 7 7 7 9 9 f f f . 
-            . . . . . . f 7 9 f f f f 7 7 7 f . 
-            . . . . . . f f f 9 9 9 f f f f f f 
-            . . . . . . f 9 9 a a f b 9 a a 9 f 
-            . . . . . . . f 9 d d f b a d a 9 f 
-            . . . . . . c . 9 9 d d d a 9 9 f f 
-            c c c c c c c 9 d d 9 9 7 7 7 7 f . 
-            . c d d d d c 9 d d a a 9 a a a f . 
-            . . c c c c c . 9 9 9 9 f f f f f . 
-            . . . . . . c . . . f f f f f f f f 
-            . . . . . . . . . . . f f . . f f f 
-            `)
-        pause(500)
         P2.setImage(img`
             . . . . . . f f f f f f . . 
             . . . . . f 7 f 9 9 9 9 f . 
@@ -71,25 +97,6 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             `)
     }
     if (aimP2 == 2) {
-        P2.setImage(img`
-            . . . . . f f . . . . . . . . . . . 
-            . . f f f f 7 f f . . . . . . . . . 
-            . f 9 9 9 9 f 7 f f . . . . . . . . 
-            . f 9 9 9 9 f 7 7 f f . . . . . . . 
-            . f 9 9 f f 9 9 9 9 f . . . . . . . 
-            . f f f 9 9 7 7 7 7 9 f . . . . . . 
-            . f 7 7 7 f f f f 9 7 f . . . . . . 
-            f f f f f f 9 9 9 f f f . . . . . . 
-            f 9 a a 9 b f a a 9 9 f . . . . . . 
-            f 9 a d a b f d d 9 f . . . . . . . 
-            f f 9 9 a d d d 9 9 . c . . . . . . 
-            . f 7 7 7 7 9 9 d d 9 c c c c c c c 
-            . f a a a 9 a a d d 9 c d d d d c . 
-            . f f f f f 9 9 9 9 . c c c c c . . 
-            f f f f f f f f . . . c . . . . . . 
-            f f f . . f f . . . . . . . . . . . 
-            `)
-        pause(500)
         P2.setImage(img`
             . . f f f f f f . . . . . . 
             . f 9 9 9 9 f 7 f . . . . . 
@@ -204,31 +211,54 @@ controller.player1.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.P
         . . . f f f . . . . . . . . 
         `)
     aimP1 = 2
-    if (controller.player1.isPressed(ControllerButton.A)) {
-        pause(500)
-    }
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
+    if (hitP1 == true) {
+        if (aimP1 == 1) {
+            hitP1 = false
+            P1.setImage(img`
+                . . . . . . . . . . . f f . . . . . 
+                . . . . . . . . . f f 2 f f f f . . 
+                . . . . . . . . f f 2 f e e e e f . 
+                . . . . . . . f f 2 2 f e e e e f . 
+                . . . . . . . f e e e e f f e e f . 
+                . . . . . . f e 2 2 2 2 e e f f f . 
+                . . . . . . f 2 e f f f f 2 2 2 f . 
+                . . . . . . f f f e e e f f f f f f 
+                . . . . . . f e e 4 4 f b e 4 4 e f 
+                . . . . . . . f e d d f b 4 d 4 e f 
+                . . . . . . c . e e d d d 4 e e f f 
+                c c c c c c c e d d e e 2 2 2 2 f . 
+                . c d d d d c e d d 4 4 e 4 4 4 f . 
+                . . c c c c c . e e e e f f f f f . 
+                . . . . . . c . . . f f f f f f f f 
+                . . . . . . . . . . . f f . . f f f 
+                `)
+        }
+        if (aimP1 == 2) {
+            hitP1 = false
+            P1.setImage(img`
+                . . . . . f f . . . . . . . . . . . 
+                . . f f f f 2 f f . . . . . . . . . 
+                . f e e e e f 2 f f . . . . . . . . 
+                . f e e e e f 2 2 f f . . . . . . . 
+                . f e e f f e e e e f . . . . . . . 
+                . f f f e e 2 2 2 2 e f . . . . . . 
+                . f 2 2 2 f f f f e 2 f . . . . . . 
+                f f f f f f e e e f f f . . . . . . 
+                f e 4 4 e b f 4 4 e e f . . . . . . 
+                f e 4 d 4 b f d d e f . . . . . . . 
+                f f e e 4 d d d e e . c . . . . . . 
+                . f 2 2 2 2 e e d d e c c c c c c c 
+                . f 4 4 4 e 4 4 d d e c d d d d c . 
+                . f f f f f e e e e . c c c c c . . 
+                f f f f f f f f . . . c . . . . . . 
+                f f f . . f f . . . . . . . . . . . 
+                `)
+        }
+    }
+    pause(250)
     if (aimP1 == 1) {
-        P1.setImage(img`
-            . . . . . . . . . . . f f . . . . . 
-            . . . . . . . . . f f 2 f f f f . . 
-            . . . . . . . . f f 2 f e e e e f . 
-            . . . . . . . f f 2 2 f e e e e f . 
-            . . . . . . . f e e e e f f e e f . 
-            . . . . . . f e 2 2 2 2 e e f f f . 
-            . . . . . . f 2 e f f f f 2 2 2 f . 
-            . . . . . . f f f e e e f f f f f f 
-            . . . . . . f e e 4 4 f b e 4 4 e f 
-            . . . . . . . f e d d f b 4 d 4 e f 
-            . . . . . . c . e e d d d 4 e e f f 
-            c c c c c c c e d d e e 2 2 2 2 f . 
-            . c d d d d c e d d 4 4 e 4 4 4 f . 
-            . . c c c c c . e e e e f f f f f . 
-            . . . . . . c . . . f f f f f f f f 
-            . . . . . . . . . . . f f . . f f f 
-            `)
-        pause(500)
         P1.setImage(img`
             . . . . . . f f f f f f . . 
             . . . . . f 2 f e e e e f . 
@@ -250,25 +280,6 @@ controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
     }
     if (aimP1 == 2) {
         P1.setImage(img`
-            . . . . . f f . . . . . . . . . . . 
-            . . f f f f 2 f f . . . . . . . . . 
-            . f e e e e f 2 f f . . . . . . . . 
-            . f e e e e f 2 2 f f . . . . . . . 
-            . f e e f f e e e e f . . . . . . . 
-            . f f f e e 2 2 2 2 e f . . . . . . 
-            . f 2 2 2 f f f f e 2 f . . . . . . 
-            f f f f f f e e e f f f . . . . . . 
-            f e 4 4 e b f 4 4 e e f . . . . . . 
-            f e 4 d 4 b f d d e f . . . . . . . 
-            f f e e 4 d d d e e . c . . . . . . 
-            . f 2 2 2 2 e e d d e c c c c c c c 
-            . f 4 4 4 e 4 4 d d e c d d d d c . 
-            . f f f f f e e e e . c c c c c . . 
-            f f f f f f f f . . . c . . . . . . 
-            f f f . . f f . . . . . . . . . . . 
-            `)
-        pause(500)
-        P1.setImage(img`
             . . f f f f f f . . . . . . 
             . f e e e e f 2 f . . . . . 
             . f e e e f 2 2 2 f . . . . 
@@ -287,7 +298,6 @@ controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             . . . f f f . . . . . . . . 
             `)
     }
-    controller.configureRepeatEventDefaults(500, 30)
 })
 controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     P1.setImage(img`
@@ -309,12 +319,11 @@ controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pr
         . . . . . . . . f f f . . . 
         `)
     aimP1 = 1
-    if (controller.player1.isPressed(ControllerButton.A)) {
-        pause(500)
-    }
 })
+let hitP1 = false
 let aimP1 = 0
 let statusbar1: StatusBarSprite = null
+let hitP2 = false
 let aimP2 = 0
 let statusbar2: StatusBarSprite = null
 let P2: Sprite = null
@@ -444,6 +453,10 @@ scene.setBackgroundImage(img`
 tiles.setCurrentTilemap(tilemap`level1`)
 Player_1()
 Player_2()
+game.onUpdateInterval(1000, function () {
+    hitP1 = true
+    hitP2 = true
+})
 forever(function () {
     scene.centerCameraAt(0, (P1.y + P2.y) / 2)
 })
