@@ -51,6 +51,7 @@ function Player_2 () {
 }
 function mapa3 () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
     sprites.destroyAllSpritesOfKind(SpriteKind.StatusBar)
     sprites.destroyAllSpritesOfKind(SpriteKind.Indicador)
     tiles.setCurrentTilemap(tilemap`level9`)
@@ -505,18 +506,20 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
     }
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
-    sprites.destroy(sprite)
-    if (shotP1 == false) {
-        music.play(music.createSoundEffect(WaveShape.Square, 1600, 1, 255, 0, 150, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
-        statusbar2.value += -20
-    }
-    if (shotP2 == false) {
-        music.play(music.createSoundEffect(WaveShape.Square, 1600, 1, 255, 0, 150, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+    if (projectile.overlapsWith(P1)) {
+        sprites.destroy(projectile)
         statusbar1.value += -20
+        music.play(music.createSoundEffect(WaveShape.Square, 1600, 1, 255, 0, 150, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+    }
+    if (projectile.overlapsWith(P2)) {
+        sprites.destroy(projectile)
+        statusbar2.value += -20
+        music.play(music.createSoundEffect(WaveShape.Square, 1600, 1, 255, 0, 150, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
     }
 })
 function mapa2 () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
     sprites.destroyAllSpritesOfKind(SpriteKind.StatusBar)
     sprites.destroyAllSpritesOfKind(SpriteKind.Indicador)
     tiles.setCurrentTilemap(tilemap`level9`)
@@ -1354,9 +1357,9 @@ controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pr
     aimP1 = 1
 })
 let indicadorBala1: StatusBarSprite = null
+let shotP1 = false
 let hitP1 = false
 let aimP1 = 0
-let shotP1 = false
 let hitP2 = false
 let statusbar1: StatusBarSprite = null
 let P1: Sprite = null
